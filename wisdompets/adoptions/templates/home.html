@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h3>Animals available for adoption</h3>
-  <ul>
+  <div>
+    <h3>Animals available for adoption</h3>
     {% for pet in pets %}
-      <li>
+      <div class='petname'>
         <a href="{% url 'pet_detail' pet.id %}">
-          {{ pet.name|capfirst }}
+          <h3>{{ pet.name|capfirst }}</h3>
         </a>
-      </li>
+        <p>{{ pet.species }}</p>
+        {% if pet.breed %}
+          <p>Breed: {{ pet.breed }}</p>
+        {% endif %}
+        <p class='hidden'>{{ pet.description }}</p>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock content %}
 
